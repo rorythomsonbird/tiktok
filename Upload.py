@@ -85,6 +85,7 @@ class Upload:
                 for i in range(0,len(vidhashes)-1): 
                     hashtags.click()
                     pyautogui.typewrite(vidhashes[i], interval=0.1) 
+                    pyautogui.press('enter')
                     time.sleep(0.1)
                 
                  

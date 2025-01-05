@@ -19,7 +19,7 @@ else:
     print("Login success!")
     print("Beginning upload...")
     try:
-        Upload.upload(driver,"C:\\Users\\roryt\\Desktop\\Code\\tiktokbot\\tiktok\\vid.mp4")
+        Upload.upload(driver,"C:\\Users\\roryt\\Desktop\\Code\\tiktokbot\\tiktok\\AutoClip_Out.mp4")
 
     except Exception:
         print("ERROR UPLOADING")
