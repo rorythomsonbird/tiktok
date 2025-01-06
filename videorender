@@ -90,7 +90,7 @@ def clip(
     vid_clip = vid_clip.crop(x_center=1980 / 2, y_center=1280 / 2, width=720, height=1280)
 
     if image_file != '':
-        image_clip = ImageClip(image_file).set_duration(duration).set_position(("center", 'center')).resize(0.8) # Adjust if the Banner is too small
+        image_clip = ImageClip(image_file).set_duration(duration).set_position(("center", 'center')).resize(1.2) # Adjust if the Banner is too small
         vid_clip = CompositeVideoClip([vid_clip, image_clip])
 
     vid_clip = CompositeVideoClip([vid_clip, concatenate_videoclips(text_comp).set_position(('center', 860))])
@@ -122,7 +122,7 @@ def generate_audio_text(fulltext: List[str]):
             continue
             
         audio_file = f"temp_assets/audio_{idx}.mp3"
-        #generate_speech(text.strip(), filename=audio_file)
+        
         client = ElevenLabs(api_key="sk_f323b31b863f5d19734954b17e2e9a3734ceb92b8307eecc")
         tts = client.generate(
             text=text.strip(),
@@ -134,7 +134,7 @@ def generate_audio_text(fulltext: List[str]):
 
         text_clip = TextClip(
             text,
-            font='Arial-Bold', # Change Font if not found
+            font='burbankbigcondensed-bold-1.otf', # Change Font if not found
             fontsize=60,
             color="white",
             align='center',
@@ -202,14 +202,15 @@ if __name__ == '__main__':
     """
 
     console.print("\n\n[light_green] Task Starting\n\n")
-    #clip(content=content, 
-    #     video_file=video_background_file, 
-    #     image_file=image_banner_file,
-    #     outfile=output_file, 
-    #     offset=video_background_offset)
+    makecaption("newcap.png", "AITA for the way I acted towards my parents when they didn't like my food?")
+    clip(content=content, 
+         video_file=video_background_file, 
+         image_file="C:\\Users\\roryt\\Desktop\\Code\\tiktokbot\\tiktok\\newcap.png",
+         outfile=output_file, 
+         offset=video_background_offset)
 
     console.print("\n\n[light_green] Completed!")
-    makecaption("newcap.png", "AITA for refusing to let my roommate’s boyfriend move into our apartment? ")
+    
     
     
     
