@@ -26,7 +26,7 @@ import moviepy.video.fx.all as vfx
 from rich.console import Console
 from rich.progress import track
 import pyfiglet
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 import boto3
 from elevenlabs.client import ElevenLabs
 from elevenlabs import play, save, stream, Voice, VoiceSettings
@@ -149,6 +149,27 @@ def generate_audio_text(fulltext: List[str]):
     return audio_comp, text_comp
 
 
+def makecaption(name, caption):
+    fontsize = 20
+    splitcap = caption.split(" ")
+    newcap = ""
+    for i in range(len(splitcap)):
+        if i%9==0 and i!=0:
+            newcap = newcap + splitcap[i]+"\n"
+            if i >=18:
+                fontsize = fontsize - 5
+            
+        else: 
+            newcap = newcap + splitcap[i]+" "
+    image = Image.open("captiontemplate.png").convert("RGBA")
+    txt = Image.new("RGBA", image.size, (255, 255, 255, 0))
+    font = ImageFont.truetype("burbankbigcondensed-bold-1.otf", fontsize)
+    draw = ImageDraw.Draw(txt)
+    draw.text((10,60), newcap, font=font, fill=(0, 0, 0))
+    combined = Image.alpha_composite(image, txt)
+    combined.save(name, "PNG")
+    
+
 if __name__ == '__main__':
 
     console = Console()
@@ -181,14 +202,14 @@ if __name__ == '__main__':
     """
 
     console.print("\n\n[light_green] Task Starting\n\n")
-    clip(content=content, 
-         video_file=video_background_file, 
-         image_file=image_banner_file,
-         outfile=output_file, 
-         offset=video_background_offset)
+    #clip(content=content, 
+    #     video_file=video_background_file, 
+    #     image_file=image_banner_file,
+    #     outfile=output_file, 
+    #     offset=video_background_offset)
 
     console.print("\n\n[light_green] Completed!")
-    
+    makecaption("newcap.png", "AITA for refusing to let my roommate’s boyfriend move into our apartment? ")
     
     
     
