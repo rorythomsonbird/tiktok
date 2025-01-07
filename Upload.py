@@ -8,6 +8,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 import pyautogui
 import os
+import requests
 
 class Upload:
     def login():
@@ -38,9 +39,15 @@ class Upload:
             credline = creds.read().split("\n")
 
             time.sleep(4)
-            userfield.send_keys(credline[0].split(",")[1])
+            for char in credline[0].split(",")[1]:
+                userfield.send_keys(char) 
+                time.sleep(0.1)
+            #userfield.send_keys(credline[0].split(",")[1])
             passfield = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[type='password'][placeholder='Password']"))) 
-            passfield.send_keys(credline[1].split(",")[1])
+            for char in credline[1].split(",")[1]:
+                passfield.send_keys(char) 
+                time.sleep(0.1)
+            #passfield.send_keys(credline[1].split(",")[1])
             button = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "button[data-e2e='login-button']")))
             button.click()
             time.sleep(3)
@@ -118,4 +125,35 @@ class Upload:
 
         driver.quit()
     
-    
+    def tiktokapi():
+        
+
+        # Your client key and client secret
+        client_key = 'aw6nmnj9379tyo2c'
+        client_secret = '6NYArUzSjWpn5rrtXCPyhzb4anW9htnU'
+
+        # URL to obtain the access token
+        token_url = 'https://open-api.tiktok.com/oauth/access_token/'
+
+        # Parameters for the token request
+        params = {
+            'client_key': client_key,
+            'client_secret': client_secret,
+            'grant_type': 'client_credentials'
+        }
+
+        # Request the access token
+        response = requests.post(token_url, data=params)
+        token_info = response.json()
+        access_token = token_info['access_token']
+
+        # Use the access token in your API requests
+        api_url = 'https://open-api.tiktok.com/v1/video/upload/'
+        headers = {
+            'Authorization': f'Bearer {access_token}'
+        }
+        response = requests.get(api_url, headers=headers)
+        data = response.json()
+
+        print(data)
+

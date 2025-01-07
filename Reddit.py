@@ -41,7 +41,14 @@ class Reddit:
         
         story[1][0] = story[1][0].replace("'","")
         story[1][0] = story[1][0].replace("-","")
+        contentsplit = story[1][0].split(" ")
+        newbody = ""
+        for i in range(len(contentsplit)):
+            if i%6==0 and i!=0:
+                newbody = newbody + contentsplit[i]+"\n"
+            else: 
+                newbody = newbody + contentsplit[i]+" "
         open("storytitle.txt","w").write(story[0][0])
-        open("storybody.txt","w").write(story[1][0])
+        open("storybody.txt","w").write(newbody)
         open("storyurls.txt","a").write(story[2][0])
 
