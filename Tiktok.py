@@ -1,7 +1,9 @@
 from Upload import Upload
 from Videorender import Videorender
+from Reddit import Reddit
 import os, sys, time
 import random
+
 
 class SuppressPrints:
     def __enter__(self):
@@ -77,26 +79,30 @@ I did not attend the funeral for those who ask,
 and I reach out to my son because i don’t want to bother her. 
 it’s clear she doesn’t like us much and bitter.
 """
-cap = "AITA for booking a hotel in the same area as my son and dil’s trip that we didn’t get to go on?"
-Videorender.makecaption("newcap.png", cap)
-Videorender.clip(content=content, 
-     video_file=video_background_file, 
-     image_file="C:\\Users\\roryt\\Desktop\\Code\\tiktokbot\\tiktok\\newcap.png",
-     outfile=output_file, 
-     offset=video_background_offset)
-print("Logging in...")
-with SuppressPrints():
-    driver = Upload.login()
-if driver == "error":
-    print("There was a problem, please retry.")
-else:
-    print("Login success!")
-    print("Beginning upload...")
-    try:
-        Upload.upload(driver,"C:\\Users\\roryt\\Desktop\\Code\\tiktokbot\\tiktok\\AutoClip_Out.mp4")
+#cap = "AITA for booking a hotel in the same area as my son and dil’s trip that we didn’t get to go on?"
+#Videorender.makecaption("newcap.png", cap)
+#Videorender.clip(content=content, 
+#     video_file=video_background_file, 
+#     image_file="C:\\Users\\roryt\\Desktop\\Code\\tiktokbot\\tiktok\\newcap.png",
+#     outfile=output_file, 
+#     offset=video_background_offset)
+#print("Logging in...")
+#with SuppressPrints():
+#    driver = Upload.login()
+#if driver == "error":
+#    print("There was a problem, please retry.")
+#else:
+#    print("Login success!")
+#    print("Beginning upload...")
+#    try:
+#        Upload.upload(driver,"C:\\Users\\roryt\\Desktop\\Code\\tiktokbot\\tiktok\\AutoClip_Out.mp4")
+#
+#    except Exception:
+#        print("ERROR UPLOADING")
+#        print(Exception)
+#        time.sleep(300)
+#        driver.quit()
 
-    except Exception:
-        print("ERROR UPLOADING")
-        print(Exception)
-        time.sleep(300)
-        driver.quit()
+Reddit.story("AITAH")
+
+
