@@ -1,0 +1,14 @@
+# Reddit → TikTok Bot — Python dependencies
+# Install with: pip install -r requirements.txt
+
+praw                       # Reddit API
+edge-tts                   # Free Microsoft neural TTS (MUCH better than gTTS)
+moviepy                    # Video editing
+Pillow                     # Image processing (caption overlay)
+selenium                   # Browser automation (legacy)
+undetected-chromedriver    # Selenium wrapper (legacy)
+tiktok-uploader            # Modern TikTok upload via Playwright
+google-api-python-client   # YouTube Data API client
+google-auth                # OAuth credentials
+google-auth-oauthlib       # OAuth flow helper
+google-auth-httplib2       # HTTP transport for Google auth
