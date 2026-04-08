@@ -17,7 +17,7 @@ REDDIT_CREDS_FILE  = "redditcreds.txt"   # client_id=... / client_secret=... etc
 STORY_URLS_FILE    = "storyurls.txt"
 STORY_TITLE_FILE   = "storytitle.txt"
 STORY_BODY_FILE    = "storybody.txt"
-BAD_WORDS_FILE     = "badwords.txt"
+BAD_WORDS_FILE     = "badword.txt"
 
 # ── Reddit ─────────────────────────────────────────────────────────────────────
 SUBREDDIT          = "AITAH"
